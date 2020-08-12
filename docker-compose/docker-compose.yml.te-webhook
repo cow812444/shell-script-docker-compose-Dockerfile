@@ -1,0 +1,22 @@
+version: "3"
+services:
+  te-webhook3:
+    image: harbor.lishang4.com:4510/emotibot/te-webhook3:${TAG:-latest}
+    container_name: te-webhook3
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 5125M
+    ports: 
+      - "5010:5010"
+    environment:
+      - TW_PORT=5010
+    networks:
+      - emotibot
+networks:
+  emotibot:
+    external:
+      name: emotibot
